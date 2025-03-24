@@ -28,7 +28,7 @@ class LLMBaseService(BaseService):
         Returns:
             str: postprocessed response text
         """
-        response_text = response_text.replace('\n', '')
+        response_text = response_text.replace("\n", "")
         response_text = response_text.strip()
 
         return response_text
@@ -47,12 +47,12 @@ class LLMBaseService(BaseService):
 
         # extract json object from text
         curly_brackets_match = re.search(
-            r'\{.*\}',
+            r"\{.*\}",
             text.strip(),
             re.MULTILINE | re.IGNORECASE | re.DOTALL,
         )
         if curly_brackets_match:
-            json_str = curly_brackets_match.group().replace('{  ', '{')
+            json_str = curly_brackets_match.group().replace("{  ", "{")
             try:
                 json_object = json.loads(json_str, strict=False)
             except json.decoder.JSONDecodeError:
